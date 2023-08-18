@@ -35,11 +35,11 @@ spring:
               - DELETE
               - OPTIONS
       routes:
-        - id: example-service
-          uri: lb://EXAMPLE-SERVICE
+        - id: suggestion-service
+          uri: lb://SUGGESTION-SERVICE
           predicates:
-            - Path=/example-service/**
-            - Method=GET,OPTIONS
+            - Path=/suggestion-service/**
+            - Method=GET,POST,DELETE,OPTIONS
           filters:
-            - RewritePath=/example-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
 
