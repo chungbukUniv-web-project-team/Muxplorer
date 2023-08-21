@@ -39,6 +39,7 @@ public class RoomServiceImpl implements RoomService {
 		List<RoomEntity> roomEntities = roomRepository.findAll();
 		return roomEntities.stream()
 			.map(roomEntity -> new RoomResponseObjectDto(roomEntity.getId(), roomEntity.getSpaceName(),
+				roomEntity.getUserId(),
 				roomEntity.getLastedAt()))
 			.collect(Collectors.toList());
 	}
@@ -50,7 +51,7 @@ public class RoomServiceImpl implements RoomService {
 			throw new NotFoundRoomByUserIdException("유저 아이디에 해당하는 방을 찾을 수 없습니다");
 		}
 		return new RoomResponseObjectDto(roomEntity.getId(),
-			roomEntity.getSpaceName(), roomEntity.getLastedAt());
+			roomEntity.getSpaceName(), roomEntity.getUserId(), roomEntity.getLastedAt());
 	}
 
 	@Override
