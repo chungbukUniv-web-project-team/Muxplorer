@@ -35,6 +35,7 @@ spring:
               - DELETE
               - OPTIONS
       routes:
+
         # 로그인/회원기입 h2-console 사용 설정
         - id: user-service
           uri: lb://USER-SERVICE
@@ -90,7 +91,13 @@ spring:
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - MyAuthorizationFilter=true
-
+        - id: suggestion-service
+          uri: lb://SUGGESTION-SERVICE
+          predicates:
+            - Path=/suggestion-service/**
+            - Method=GET,POST,DELETE,OPTIONS
+          filters:
+            - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
 
 token:
   secret : amFuZ2phbmdqYW5namFuZ2phbmdqYW5namFuZ2phbmc=
