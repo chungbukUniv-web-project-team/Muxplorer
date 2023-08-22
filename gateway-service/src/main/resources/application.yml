@@ -35,11 +35,62 @@ spring:
               - DELETE
               - OPTIONS
       routes:
-        - id: example-service
-          uri: lb://EXAMPLE-SERVICE
+        # 로그인/회원기입 h2-console 사용 설정
+        - id: user-service
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/example-service/**
-            - Method=GET,OPTIONS
+            - Path=/h2-console/**
+        # 회원가입 루트
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/api/signup
+            - Method=POST
           filters:
-            - RewritePath=/example-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        # 로그아웃 루트
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/api/logout
+            - Method=POST
+          filters:
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        # 리프레시 토큰발급
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/api/refresh
+            - Method=POST
+          filters:
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+       # 로그인 루트
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/api/login
+            - Method=POST
+          filters:
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+#      # Admin만 접근 가능한 페이지
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/user-service/admin/**
+#            - Method=GET,POST
+#          filters:
+#            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+#            - OnlyAdminFilter=true
+      # 나머지 경로(인증 필요)
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+            - Method=GET,POST,DELETE,OPTIONS
+          filters:
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - MyAuthorizationFilter=true
 
+
+token:
+  secret : amFuZ2phbmdqYW5namFuZ2phbmdqYW5namFuZ2phbmc=
