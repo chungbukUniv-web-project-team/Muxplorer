@@ -21,5 +21,8 @@ public class RoomResponseObjectDto {
 	private String spaceName;
 
 	@NotNull
+	private Long userId;
+
+	@NotNull
 	private LocalDateTime lastedAt;
 }
