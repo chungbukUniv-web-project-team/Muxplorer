@@ -5,7 +5,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defaultZone: http://220.125.53.144:8761/eureka
 server:
   port: 8000
 spring:
@@ -90,7 +90,39 @@ spring:
             - Method=GET,POST,DELETE,OPTIONS
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-            - MyAuthorizationFilter=true
+            - MyAuthorizationFilter
+        - id: crawling-service
+          uri: lb://CRAWLING-SERVICE
+          predicates:
+            - Path=/crawling-service/**
+            - Method=GET,POST,DELETE,OPTIONS
+          filters:
+            - RewritePath=/crawling-service/(?<segment>.*), /$\{segment}
+            - MyAuthorizationFilter
+        - id: suggestion-service
+          uri: lb://SUGGESTION-SERVICE
+          predicates:
+            - Path=/suggestion-service/find/room
+            - Method=GET
+          filters:
+            - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
+            - OnlyAdminFilter
+        - id: suggestion-service
+          uri: lb://SUGGESTION-SERVICE
+          predicates:
+            - Path=/suggestion-service/get/proposal/**
+            - Method=GET
+          filters:
+            - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
+            - OnlyAdminFilter
+        - id: suggestion-service
+          uri: lb://SUGGESTION-SERVICE
+          predicates:
+            - Path=/suggestion-service/delete/proposal/**
+            - Method=GET
+          filters:
+            - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
+            - OnlyAdminFilter
         - id: suggestion-service
           uri: lb://SUGGESTION-SERVICE
           predicates:
