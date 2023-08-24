@@ -2,9 +2,14 @@
     padding :"1rem";
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
+    margin-block:137px;
   }
   
   .signup-form {
-    width: 300px;
+    width: 300px; 
   }
+
+.signup-form-container h1 {
+  margin-right: 20px;
+}
