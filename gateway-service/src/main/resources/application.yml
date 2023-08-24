@@ -73,7 +73,26 @@ spring:
             - Method=POST
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-#      # Admin만 접근 가능한 페이지
+        # 리뷰 서비스 - 리뷰 등록
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/review-service/api/send/review
+            - Method=POST
+          filters:
+            - RewritePath=/review-service/(?<segment>.*), /$\{segment}
+            - MyAuthorizationFilter
+        # 리뷰 서비스 - 리뷰 삭제
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/review-service/api/delete/review/**
+            - Method=DELETE
+          filters:
+            - RewritePath=/review-service/(?<segment>.*), /$\{segment}
+            - MyAuthorizationFilter
+
+        #      # Admin만 접근 가능한 페이지
 #        - id: user-service
 #          uri: lb://USER-SERVICE
 #          predicates:
@@ -98,10 +117,11 @@ spring:
             - Method=GET,POST,DELETE,OPTIONS
           filters:
             - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
+        # 리뷰 서비스 (나머지 기능)
         - id: review-service
           uri: lb://REVIEW-SERVICE
           predicates:
-            - Path=/review-service/**
+            - Path=/review-service/api/**
             - Method=GET,POST,DELETE,OPTIONS
           filters:
             - RewritePath=/review-service/(?<segment>.*), /$\{segment}
