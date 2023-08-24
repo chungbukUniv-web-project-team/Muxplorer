@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import './SignupFormCss.css';
 
 function SignupForm() {
-    const apiUrl = "http://localhost:8000/user-service/api/signup";
+    // const apiUrl = "http://localhost:8000/user-service/api/signup";
+    // const apiUrl = "http://localhost:11679/api/signup";
+    const apiUrl = "http://220.125.53.144:8000/user-service/api/signup";
+
 
     const [formData, setFormData] = useState({
         username: '',
@@ -23,7 +26,7 @@ function SignupForm() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-
+    
         fetch(apiUrl, {
             method: "POST",
             headers: {
@@ -31,19 +34,23 @@ function SignupForm() {
             },
             body: JSON.stringify(formData),
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // 여기서 data를 기반으로 원하는 처리를 수행할 수 있습니다.
-            })
-            .catch(error => console.error("Error:", error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200) { // 성공
+                alert("회원가입에 성공하셨습니다");
+                window.location.href = "/"; // 루트 페이지로 리디렉션
+            } else { // 실패
+                alert("회원가입에 실패하셨습니다. 사유: " + data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
     };
 
     return (
         <div class="signup-form-container">
             <h1>회원가입</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">아이디: </label>
                 <input
                     type="text"
                     id="username"
@@ -53,7 +60,7 @@ function SignupForm() {
                     required
                 /><br /><br />
 
-                <label htmlFor="password1">Password:</label>
+                <label htmlFor="password1">비밀번호: </label>
                 <input
                     type="password"
                     id="password1"
@@ -63,7 +70,7 @@ function SignupForm() {
                     required
                 /><br /><br />
 
-                <label htmlFor="password2">Confirm Password:</label>
+                <label htmlFor="password2">비밀번호 확인: </label>
                 <input
                     type="password"
                     id="password2"
@@ -73,7 +80,7 @@ function SignupForm() {
                     required
                 /><br /><br />
 
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">이메일: </label>
                 <input
                     type="email"
                     id="email"
@@ -83,7 +90,7 @@ function SignupForm() {
                     required
                     /><br /><br />
 
-                <label htmlFor="nickname">Nickname:</label>
+                <label htmlFor="nickname">닉네임: </label>
                 <input
                     type="text"
                     id="nickname"
@@ -93,7 +100,7 @@ function SignupForm() {
                     required
                 /><br /><br />
 
-                <label htmlFor="university">University:</label>
+                <label htmlFor="university">대학교: </label>
                 <select
                     name="university"
                     value={formData.university}
