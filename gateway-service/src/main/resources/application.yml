@@ -98,6 +98,13 @@ spring:
             - Method=GET,POST,DELETE,OPTIONS
           filters:
             - RewritePath=/suggestion-service/(?<segment>.*), /$\{segment}
+        - id: review-service
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/review-service/**
+            - Method=GET,POST,DELETE,OPTIONS
+          filters:
+            - RewritePath=/review-service/(?<segment>.*), /$\{segment}
 
 token:
   secret : amFuZ2phbmdqYW5namFuZ2phbmdqYW5namFuZ2phbmc=
