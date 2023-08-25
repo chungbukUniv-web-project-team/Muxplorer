@@ -8,6 +8,7 @@ import SignupForm from './pages/signupform/SignupForm';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
+import FoodListPage from './pages/foods/FoodListPage';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm />} /> {/* 추가 */}
         <Route path="/signup" element={<SignupForm />} /> {/* 추가 */}
+        <Route path='/foods' element={<FoodListPage />} />
       </Routes>
       <Footer />
     </div>
