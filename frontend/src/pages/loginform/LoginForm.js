@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './LoginFormCss.css';
+import axios from "axios";
+import Token from "../../components/Token";
 
 function LoginForm() {
     // const apiUrl = "http://localhost:8000/user-service/api/login";
@@ -22,7 +24,7 @@ function LoginForm() {
     }, []);
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -31,44 +33,70 @@ function LoginForm() {
 
     const handleLogin = (event) => {
         event.preventDefault();
-    
-        fetch(apiUrl, {
-            method: "POST",
+
+        axios.post(apiUrl, {
+            username: formData.username,
+            password: formData.password
+        }, {
             headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: formData.username,
-                password: formData.password,
-            }),
+                "Content-Type": "application/json"
+            }
         })
             .then(response => {
-                if (response.status === 200) {
-                      // Handle successful login here
-                    setLoginMessage("로그인이 되었습니다");
-                    const accessToken = response.headers.get("accessToken");
-                    const refreshToken = response.headers.get("refreshToken");
-                    
-                    localStorage.setItem("accessToken", accessToken);
-                    localStorage.setItem("refreshToken", refreshToken);
-                    
-                    response.headers.forEach((value, name) => {
-                        console.log(name, ":", value);
-                    });
-                    
-                    setIsLoggedIn(true);
-                    // Redirect to root page
-                    // window.location.href = "/";
-                } else if (response.status === 400) {
-                    alert("유저정보가 올바르지 않습니다.")
-                } else {
-                    setLoginMessage("로그인에 문제가 발생했습니다");
-                }
+                console.log(response.data)
+                console.log(response.headers["Accesstoken"])
+                console.log(response.headers)
+                localStorage.setItem("accessToken",response.data["accessToken"])
+                axios.get(apiUrl,Token(localStorage.getItem("accessToken")))
+                    .then(response=>console.log(response))
+                    .catch(error=>console.error(error))
             })
-            .catch(error => {
-                console.error("Error:", error);
-                setLoginMessage("로그인에 문제가 발생했습니다");
-            });
+            .catch(error => console.error(error));
+
+        // fetch(apiUrl, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //         username: formData.username,
+        //         password: formData.password,
+        //     }),
+        //     responseHeaders: true
+        // })
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         response.headers.forEach(console.log);
+        //         const accessToken = response.headers.get("accessToken");
+        //         const refreshToken = response.headers.get("refreshToken");
+        //         console.log(accessToken, refreshToken);
+        //         if (response.status === 200) {
+        //             // Handle successful login here
+        //             setLoginMessage("로그인이 되었습니다");
+        //             const accessToken = response.headers.get("accessToken");
+        //             const refreshToken = response.headers.get("refreshToken");
+        //             console.log(accessToken, refreshToken);
+        //
+        //             localStorage.setItem("accessToken", accessToken);
+        //             localStorage.setItem("refreshToken", refreshToken);
+        //
+        //             response.headers.forEach((value, name) => {
+        //                 console.log(name, ":", value);
+        //             });
+        //
+        //             setIsLoggedIn(true);
+        //             // Redirect to root page
+        //             // window.location.href = "/";
+        //         } else if (response.status === 400) {
+        //             alert("유저정보가 올바르지 않습니다.")
+        //         } else {
+        //             setLoginMessage("로그인에 문제가 발생했습니다");
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error("Error:", error);
+        //         setLoginMessage("로그인에 문제가 발생했습니다");
+        //     });
     };
 
     const handleLogout = () => {
@@ -89,7 +117,7 @@ function LoginForm() {
                     value={formData.username}
                     onChange={handleChange}
                     required
-                /><br /><br />
+                /><br/><br/>
 
                 <label htmlFor="password">비밀번호: </label>
                 <input
@@ -99,11 +127,11 @@ function LoginForm() {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                /><br /><br />
+                /><br/><br/>
 
                 <button type="submit">로그인</button>
             </form>
-            {loginMessage && <p style={{ color: "green" }}>{loginMessage}</p>}
+            {loginMessage && <p style={{color: "green"}}>{loginMessage}</p>}
         </div>
     );
 }
