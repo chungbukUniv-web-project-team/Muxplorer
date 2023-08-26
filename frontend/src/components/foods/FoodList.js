@@ -24,13 +24,15 @@ function FoodList() {
   // Calculate the range of items to display based on current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const totalPages = Math.ceil(foodList.length / itemsPerPage);
 
   return (
     <div className="food-list-container">
-        <div id='title' class='title'>
-            <div id='title1' class='title1'>음식</div>
-            <div id='title2' class='title2'>리스트</div>
-        </div>
+      <div id='food-title' class='food-title'>
+        <div id='food-title1' class='food-title1'>음식</div>
+        <div id='food-title2' class='food-title2'>리스트</div>
+      </div>
+      <div id='food-line' class='food-line' />
       <ul className="food-list">
         {foodList.slice(startIndex, endIndex).map(food => (
           <li key={food.id} className="food-item">
@@ -57,7 +59,10 @@ function FoodList() {
         >
           Previous
         </button>
-        <span>{currentPage}</span>
+        <span>
+          {/* Display the current page and total pages in the format: "currentPage / totalPages" */}
+          {`${currentPage.toString().padStart(2, '0')} / ${totalPages.toString().padStart(2, '0')}`}
+        </span>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={endIndex >= foodList.length}

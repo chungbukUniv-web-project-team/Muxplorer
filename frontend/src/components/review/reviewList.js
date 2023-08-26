@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './reviewList.css';
+import './ReviewList.css';
 
 const ReviewList = () => {
   const { id } = useParams();
@@ -64,15 +64,11 @@ const ReviewList = () => {
           <button onClick={handlePrevPage} disabled={currentPage === 1}>
             Previous
           </button>
-          <span> {currentPage} / {totalPages}</span>
+          <span> {currentPage.toString().padStart(2, '0')} / {totalPages.toString().padStart(2, '0')}</span>
           <button onClick={handleNextPage} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>
-      </div>
-      <div className="comment-field">
-        <textarea placeholder="Leave a comment..." />
-        <button>Submit</button>
       </div>
     </div>
   );
