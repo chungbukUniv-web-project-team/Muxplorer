@@ -2,53 +2,44 @@ import React, { useState, useEffect } from 'react';
 
 function Nav() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState("");
+    const [nickname, setNickname] = useState(""); // 변경: username -> nickname
 
     useEffect(() => {
         // Check if user is logged in by checking the accessToken in local storage
         const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
             setIsLoggedIn(true);
-            const payload = parseJwt(accessToken); // Decoding JWT payload
-            if (payload && payload.username) {
-                setUsername(payload.username);
+
+            // Get nickname from local storage
+            const storedNickname = localStorage.getItem("nickname");
+            if (storedNickname) {
+                setNickname(storedNickname);
             }
         }
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("accessToken");
+        localStorage.clear(); // Remove nickname from local storage
         setIsLoggedIn(false);
-        setUsername("");
-    };
-
-    // Function to decode JWT payload
-    const parseJwt = (token) => {
-        try {
-            const base64Url = token.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-
-            return JSON.parse(jsonPayload);
-        } catch (error) {
-            console.error("Error decoding JWT payload:", error);
-            return null;
-        }
+        alert("로그아웃 되었습니다.");
+        window.location.reload(); // 새로고침 실행
+        setNickname(""); // 변경: setUsername -> setNickname
     };
 
     return (
-        <nav style={{ backgroundColor: "#444", padding: "1rem", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+        <nav style={{ padding: "1rem", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
             {isLoggedIn ? (
                 <>
-                    <p style={{ color: "#fff", marginRight: "1rem" }}>{`${username} 님 환영합니다`}</p>
-                    <button onClick={handleLogout} style={{ color: "#fff", border: "none", background: "transparent", cursor: "pointer" }}>로그아웃</button>
+                    <p style={{ color: "#444", marginRight: "14px",marginTop: "0",marginBottom: "0", fontSize: "16px", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
+                        {`${nickname} 님 환영합니다`}
+                    </p>
+                    <button onClick={handleLogout} style={{ color: "#080808", border: "none", background: "transparent", cursor: "pointer",textOverflow: "ellipsis",fontSize: "16px", // 버튼 폰트 크기 키우기
+        textDecoration: "underline"}}>로그아웃</button>
                 </>
             ) : (
                 <>
-                    <a href="/login" style={{ color: "#fff", marginRight: "1rem" }}>로그인</a>
-                    <a href="/signup" style={{ color: "#fff" }}>회원가입</a>
+                    <a href="/login" style={{ color: "#444", marginRight: "1rem" }}>로그인</a>
+                    <a href="/signup" style={{ color: "#444" }}>회원가입</a>
                 </>
             )}
         </nav>
