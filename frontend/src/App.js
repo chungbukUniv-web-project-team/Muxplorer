@@ -5,9 +5,7 @@ import Home from './pages/Home';
 import LoginForm from './pages/loginform/LoginForm';
 import SignupForm from './pages/signupform/SignupForm';
 
-import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import Nav from './components/nav/Nav';
 import ProposalList from "./pages/proposal/ProposalList";
 import Proposal from "./pages/proposal/Proposal";
 import WriteProposal from "./pages/proposal/WriteProposal";
@@ -18,7 +16,6 @@ function App() {
     return (
         <div>
             <HeaderContainer/>
-
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<LoginForm/>}/>
