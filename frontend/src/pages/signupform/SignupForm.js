@@ -48,8 +48,10 @@ function SignupForm() {
 
     return (
         <div class="signup-form-container">
+            <div class="signup-box">
             <h1>회원가입</h1>
             <form onSubmit={handleSubmit}>
+            <div className="input-group">
                 <label htmlFor="username">아이디: </label>
                 <input
                     type="text"
@@ -59,7 +61,8 @@ function SignupForm() {
                     onChange={handleChange}
                     required
                 /><br /><br />
-
+            </div>
+            <div className="input-group">
                 <label htmlFor="password1">비밀번호: </label>
                 <input
                     type="password"
@@ -69,7 +72,8 @@ function SignupForm() {
                     onChange={handleChange}
                     required
                 /><br /><br />
-
+            </div>
+            <div className="input-group">
                 <label htmlFor="password2">비밀번호 확인: </label>
                 <input
                     type="password"
@@ -79,7 +83,8 @@ function SignupForm() {
                     onChange={handleChange}
                     required
                 /><br /><br />
-
+            </div>
+            <div className="input-group">
                 <label htmlFor="email">이메일: </label>
                 <input
                     type="email"
@@ -89,7 +94,8 @@ function SignupForm() {
                     onChange={handleChange}
                     required
                     /><br /><br />
-
+            </div>
+            <div className="input-group">
                 <label htmlFor="nickname">닉네임: </label>
                 <input
                     type="text"
@@ -99,7 +105,8 @@ function SignupForm() {
                     onChange={handleChange}
                     required
                 /><br /><br />
-
+            </div>
+            <div className="input-group">
                 <label htmlFor="university">대학교: </label>
                 <select
                     name="university"
@@ -111,9 +118,10 @@ function SignupForm() {
                     {/* 추가적인 대학교 옵션 추가 */}
                 </select>
                 <br /><br />
-
-                <button type="submit">가입하기</button>
+            </div>
+                <button type="submit" className="signup-button">가입하기</button>
             </form>
+            </div>
         </div>
     );
 }

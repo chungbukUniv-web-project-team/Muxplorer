@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
+
+// export default LoginForm;
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginFormCss.css';
 import axios from "axios";
-import Token from "../../components/Token";
 
 function LoginForm() {
-    // const apiUrl = "http://localhost:8000/user-service/api/login";
-    // const apiUrl = "http://localhost:11679/api/signup";
+    const navigate = useNavigate();
     const apiUrl = "http://220.125.53.144:8000/user-service/api/login";
 
     const [formData, setFormData] = useState({
@@ -16,7 +17,6 @@ function LoginForm() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        // Check if user is logged in (has access token)
         const accessToken = localStorage.getItem('accessToken');
         if (accessToken) {
             setIsLoggedIn(true);
@@ -43,95 +43,66 @@ function LoginForm() {
             }
         })
             .then(response => {
-                console.log(response.data)
-                console.log(response.headers["Accesstoken"])
-                console.log(response.headers)
-                localStorage.setItem("accessToken",response.data["accessToken"])
-                axios.get(apiUrl,Token(localStorage.getItem("accessToken")))
-                    .then(response=>console.log(response))
-                    .catch(error=>console.error(error))
+                localStorage.setItem("accessToken",response.data["accessToken"]);
+                localStorage.setItem("refreshToken",response.data["refreshToken"])
+                localStorage.setItem("username",response.data["username"]);
+                localStorage.setItem("id",response.data["id"]);
+                localStorage.setItem("nickname",response.data["nickname"]);
+                setIsLoggedIn(true);
+                
+                setLoginMessage("로그인에 성공하셨습니다.");
+                setTimeout(() => {
+                    setLoginMessage("");
+                    navigate('/');
+                    window.location.reload();
+                }, 2000);
             })
-            .catch(error => console.error(error));
-
-        // fetch(apiUrl, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //         username: formData.username,
-        //         password: formData.password,
-        //     }),
-        //     responseHeaders: true
-        // })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         response.headers.forEach(console.log);
-        //         const accessToken = response.headers.get("accessToken");
-        //         const refreshToken = response.headers.get("refreshToken");
-        //         console.log(accessToken, refreshToken);
-        //         if (response.status === 200) {
-        //             // Handle successful login here
-        //             setLoginMessage("로그인이 되었습니다");
-        //             const accessToken = response.headers.get("accessToken");
-        //             const refreshToken = response.headers.get("refreshToken");
-        //             console.log(accessToken, refreshToken);
-        //
-        //             localStorage.setItem("accessToken", accessToken);
-        //             localStorage.setItem("refreshToken", refreshToken);
-        //
-        //             response.headers.forEach((value, name) => {
-        //                 console.log(name, ":", value);
-        //             });
-        //
-        //             setIsLoggedIn(true);
-        //             // Redirect to root page
-        //             // window.location.href = "/";
-        //         } else if (response.status === 400) {
-        //             alert("유저정보가 올바르지 않습니다.")
-        //         } else {
-        //             setLoginMessage("로그인에 문제가 발생했습니다");
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error("Error:", error);
-        //         setLoginMessage("로그인에 문제가 발생했습니다");
-        //     });
+            .catch(error => setLoginMessage("유저 정보가 올바르지 않습니다."));
     };
 
     const handleLogout = () => {
-        // Remove access token from local storage
-        localStorage.removeItem('accessToken');
+        localStorage.clear();
         setIsLoggedIn(false);
     };
 
     return (
         <div className="login-form-container">
-            <h1>로그인</h1>
-            <form onSubmit={isLoggedIn ? handleLogout : handleLogin}>
-                <label htmlFor="username">아이디: </label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                /><br/><br/>
+            <div className="login-box">
+                <h1>로그인</h1>
+                <form onSubmit={isLoggedIn ? handleLogout : handleLogin}>
+                    <div className="input-group">
+                        <label htmlFor="username">아이디</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <label htmlFor="password">비밀번호: </label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                /><br/><br/>
+                    <div className="input-group">
+                        <label htmlFor="password">비밀번호</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <button type="submit">로그인</button>
-            </form>
-            {loginMessage && <p style={{color: "green"}}>{loginMessage}</p>}
+                    <button type="submit" className="login-button">로그인</button>
+                </form>
+                {loginMessage && <p className="login-message">{loginMessage}</p>}
+                {!isLoggedIn && (
+                    <p className="signup-link">
+                        아이디가 없으신가요? <a href="/signup">회원가입 하기</a>
+                    </p>
+                )}
+            </div>
         </div>
     );
 }

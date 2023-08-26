@@ -23,6 +23,7 @@ const WhiteBackground = styled.div`
 
 // 해더의 내용
 const HeaderContents = styled.div`
+    whiteSpace: "nowrap"
     width: 1200px;
     height: 55px;
     display: flex;
