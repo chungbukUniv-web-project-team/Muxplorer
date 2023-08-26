@@ -39,16 +39,16 @@ function Nav() {
     };
 
     return (
-        <nav style={{ backgroundColor: "#444", padding: "1rem", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+        <nav style={{padding: "1rem", display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
             {isLoggedIn ? (
                 <>
-                    <p style={{ color: "#fff", marginRight: "1rem" }}>{`${username} 님 환영합니다`}</p>
+                    <p style={{ color: "#444", marginRight: "1rem" }}>{`${username} 님 환영합니다`}</p>
                     <button onClick={handleLogout} style={{ color: "#fff", border: "none", background: "transparent", cursor: "pointer" }}>로그아웃</button>
                 </>
             ) : (
                 <>
-                    <a href="/login" style={{ color: "#fff", marginRight: "1rem" }}>로그인</a>
-                    <a href="/signup" style={{ color: "#fff" }}>회원가입</a>
+                    <a href="/login" style={{ color: "#444", marginRight: "1rem" }}>로그인</a>
+                    <a href="/signup" style={{ color: "#444" }}>회원가입</a>
                 </>
             )}
         </nav>

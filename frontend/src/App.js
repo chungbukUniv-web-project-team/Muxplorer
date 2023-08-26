@@ -8,17 +8,22 @@ import SignupForm from './pages/signupform/SignupForm';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
-
+import ProposalList from "./pages/proposal/ProposalList";
+import Proposal from "./pages/proposal/Proposal";
+import WriteProposal from "./pages/proposal/WriteProposal";
+import RoomList from "./pages/chat-room/RoomList";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 function App() {
     return (
         <div>
-            <Header/>
-            <Nav/>
+            <HeaderContainer/>
+
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/login" element={<LoginForm/>}/> {/* 추가 */}
-                <Route path="/signup" element={<SignupForm/>}/> {/* 추가 */}
+                <Route path="/login" element={<LoginForm/>}/>
+                <Route path="/signup" element={<SignupForm/>}/>
+
                 <Route exact path={"/proposal/list"} element={<ProposalList/>}/>
                 <Route exact path={"/proposal/:id"} element={<Proposal/>}/>
                 <Route exact path={"/proposal/send"} element={<WriteProposal/>}/>
