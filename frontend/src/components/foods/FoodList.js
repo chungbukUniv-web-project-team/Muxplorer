@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './FoodList.css';
 
 function FoodList() {
@@ -26,17 +27,22 @@ function FoodList() {
 
   return (
     <div className="food-list-container">
-      <h2>Food List</h2>
+        <div id='title' class='title'>
+            <div id='title1' class='title1'>음식</div>
+            <div id='title2' class='title2'>리스트</div>
+        </div>
       <ul className="food-list">
         {foodList.slice(startIndex, endIndex).map(food => (
           <li key={food.id} className="food-item">
             <div className="food-image">
               <img src={food.image} alt={food.name} />
             </div>
+            <Link to={`/review/${food.id}`} style={{ textDecoration: 'none', color: 'black' }}>
             <div className="food-details">
               <h3>{food.name}</h3>
               <p>{food.description}</p>
             </div>
+            </Link>
             <div className="food-restaurant">
               <h4>{food.restaurant}</h4>
               <p>{food.description}</p>

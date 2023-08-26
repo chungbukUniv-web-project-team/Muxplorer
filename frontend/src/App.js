@@ -8,12 +8,13 @@ import SignupForm from './pages/signupform/SignupForm';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Nav from './components/nav/Nav';
-import FoodListPage from './pages/foods/FoodListPage';
+import FoodListPage from './pages/foodList/FoodListPage';
 
 import ProposalList from './pages/proposal/ProposalList';
 import Proposal from './pages/proposal/Proposal';
 import WriteProposal from './pages/proposal/WriteProposal';
 import RoomList from './pages/chat-room/RoomList';
+import ReviewPage from './pages/review/ReviewPage';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                 <Route exact path={"/proposal/send"} element={<WriteProposal/>}/>
                 <Route exact path={"/room/list"} element={<RoomList/>}/>
                 <Route path='/foods' element={<FoodListPage />} />
+                <Route path='/review/:id' element={<ReviewPage />} />
             </Routes>
             <Footer/>
         </div>
