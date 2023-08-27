@@ -3,16 +3,14 @@ spring:
     name: suggestion-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1q2w3e4r!
-    url: jdbc:mysql://localhost:3306/suggestion_service_db?characterEncoding=UTF-8
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: create
-    show-sql: true
-  messages:
-    basename: messages, errors
+    username: muxplorer
+    password: 1q2w3e4r5t6y!
+    url: jdbc:mysql://muxplorer-db.mysql.database.azure.com:3306/suggestionservicedb?characterEncoding=UTF-8
+  rabbitmq:
+    host: 220.125.53.144
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: 0
@@ -20,8 +18,15 @@ server:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://220.125.53.144:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh, info

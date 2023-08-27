@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomCreateDto;
-import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomListResponseDto;
+import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomDto;
 import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomResponseObjectDto;
 import chungbukUnivwebprojectteam.suggestionservice.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +42,12 @@ public class RoomController {
 	public ResponseEntity<?> findRoom(@PathVariable Long userId) {
 		RoomResponseObjectDto roomResponseObjectDto = roomService.findRoomByUserId(userId);
 		return ResponseEntity.status(HttpStatus.OK).body(roomResponseObjectDto);
+	}
+
+	@GetMapping("/find/room/pk/{id}")
+	public ResponseEntity<?> findRoomPk(@PathVariable Long id) {
+		RoomDto roomResponseDto = roomService.findRoomById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(roomResponseDto);
 	}
 
 	@DeleteMapping("/delete/room/{id}")
