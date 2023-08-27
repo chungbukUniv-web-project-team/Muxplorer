@@ -4,7 +4,6 @@ import java.util.List;
 
 import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomCreateDto;
 import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomDto;
-import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomListResponseDto;
 import chungbukUnivwebprojectteam.suggestionservice.dto.room.RoomResponseObjectDto;
 
 public interface RoomService {

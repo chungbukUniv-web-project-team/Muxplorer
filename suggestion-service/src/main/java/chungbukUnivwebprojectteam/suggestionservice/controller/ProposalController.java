@@ -28,7 +28,7 @@ public class ProposalController {
 
 	private final ProposalService proposalService;
 
-	@GetMapping("/get/proposal-list")
+	@GetMapping("/get/proposal/list")
 	public ResponseEntity<?> getProposalList() {
 		System.out.println("ProposalController.getProposalList");
 		List<ProposalResponseObjectDto> proposalList = proposalService.findAllProposal();

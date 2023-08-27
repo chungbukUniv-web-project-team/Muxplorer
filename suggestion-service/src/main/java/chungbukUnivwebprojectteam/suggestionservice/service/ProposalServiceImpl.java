@@ -26,7 +26,7 @@ public class ProposalServiceImpl implements ProposalService {
 		List<ProposalEntity> proposalEntities = proposalRepository.findAll();
 		return proposalEntities.stream()
 			.map(proposalEntity -> new ProposalResponseObjectDto(proposalEntity.getId(), proposalEntity.getTitle(),
-				proposalEntity.getCreatedAt()))
+				proposalEntity.getContent(), proposalEntity.getCreatedAt()))
 			.collect(Collectors.toList());
 	}
 
