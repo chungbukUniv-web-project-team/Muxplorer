@@ -58,16 +58,16 @@ function FoodList() {
         {foodList.slice(startIndex, endIndex).map(food => (
           <li key={food.id} className="food-item">
             <div className="food-image">
-              <img src={food.image} alt={food.name} />
+              <img src={`/images/food-list/${food.name}.jpg`} alt={food.name} />
             </div>
             <Link to={`/review/${food.id}`} style={{ textDecoration: 'none', color: 'black' }}>
             <div className="food-details">
-              <h3>{food.name}</h3>
+              <h2>{food.name}</h2>
               <p>{food.description}</p>
             </div>
             </Link>
             <div className="food-restaurant">
-              <h4>{food.restaurant}</h4>
+              <h3>{food.restaurant}</h3>
               <p>{food.description}</p>
             </div>
           </li>

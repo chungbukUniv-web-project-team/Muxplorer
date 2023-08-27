@@ -25,14 +25,19 @@
     max-width: 250px; /* Limit width for small screens */
   }
   
+  .food-restaurant{
+    color:#bdbdbd;
+  }
+
   .food-image img {
     max-width: 100%;
-    height: auto;
+    height: 170px;
+    object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
   }
   
-  .food-details h3 {
+  .food-details h2 {
     margin: 0;
   }
   
@@ -66,7 +71,6 @@
   top: 20px; /* Adjust this value to position the title higher */
   position: relative;
   margin-top: 88px;
-  margin-bottom: 55px;
 }
 .food-title1
 {
@@ -167,8 +171,8 @@ margin-bottom: 35px;
   width: 150%;
   position: flex;
   right: 360px;
-  margin-top: 20px;
   margin-right: 20px;
+  margin-bottom: 30px; /* Add margin at the bottom */
 }
 
 .restaurant-filter select {

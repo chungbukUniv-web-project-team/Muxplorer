@@ -1,28 +1,29 @@
 .review-register-container {
     padding: 20px;
-    max-width: 60%;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
   .comment-input-container {
-    margin-top: 20px;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    margin-top: -30px;
     padding: 20px;
-    border: 1px solid #bdbdbd;
+    width: 78%;
+    border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: flex-start; /* Align children to the top */
+    position: relative;
   }
   
   .comment-input-content {
+    margin: 0 auto;
     border: none;
     resize: none;
-    width: 100%;
+    width: 99%;
     height: 70px;
-    padding: 10px;
     border: 1px solid #bdbdbd;
-    margin-right: 10px; /* Add margin to separate from rating */
     font-size: 14px;
   }
   
@@ -35,7 +36,10 @@
   }
   
   .comment-input-submit {
-    padding: 8px 16px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px;
     background-color: #333;
     color: white;
     border: none;

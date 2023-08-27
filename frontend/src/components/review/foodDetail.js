@@ -25,13 +25,19 @@ function FoodDetail() {
 
   return (
     <div className="food-list-container">
-        <div id='detail-title' class='detail-title'>
-            <div id='detail-title1' class='detail-title1'>{foodDetail.restaurant}</div>
-            <div id='detail-title2' class='detail-title2'>{foodDetail.name}</div>
+      <div id="detail-title" className="detail-title">
+        <div id="detail-title1" className="detail-title1">
+          {foodDetail.restaurant}
         </div>
-        <div id='detail-line' class='detail-line' />
+        <div id="detail-title2" className="detail-title2">
+          {foodDetail.name}
+        </div>
+        <div className="detail-image">
+          <img src={`/images/food-list/${foodDetail.name}.jpg`} alt="foodDetail.name"/>
+        </div>
+      </div>
+      <div id="detail-line" className="detail-line" />
     </div>
-    
   );
 }
 

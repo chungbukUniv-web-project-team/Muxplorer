@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ReviewList.css';
+import Token from "../../components/Token";
 
 const ReviewList = () => {
   const { id } = useParams();
@@ -14,13 +15,17 @@ const ReviewList = () => {
       try {
         const response = await axios.get(`http://220.125.53.144:8000/review-service/api/get/review-list/${id}`);
         if (response.data && response.data.response) {
-          setReviewList(response.data.response);
+          // Sort reviews in descending order based on createDate
+          const sortedReviews = response.data.response.sort((a, b) =>
+            new Date(b.createDate) - new Date(a.createDate)
+          );
+          setReviewList(sortedReviews);
         }
       } catch (error) {
         console.error('Error fetching review list:', error);
       }
     };
-
+  
     fetchReviewList();
   }, [id]);
 
@@ -51,9 +56,28 @@ const ReviewList = () => {
     setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
   };
 
-  const handleDeleteReview = (id) => {
-      console.log(id);
+  const handleDeleteReview = (event) => {
+      const reviewId = event.id;
+      const userId = event.userId;
+
+      if(userId == localStorage.getItem("id")) {
+        axios.delete(`http://220.125.53.144:8000/review-service/api/delete/review/${reviewId}`, Token(localStorage.getItem("accessToken")))
+            .then(response => {
+                console.log(response)
+                alert("리뷰 삭제에 성공했습니다");
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+                alert("리뷰 삭제에 실패했습니다")
+            });
+      } else {
+        console.log(userId);
+        console.log(localStorage.getItem("id"));
+        alert("리뷰 작성자만 삭제 가능합니다")
+      }
   };
+
 
   return (
     <div className="review-list-container">
@@ -66,9 +90,9 @@ const ReviewList = () => {
               </div>
               <div className="review-content">{review.content}</div>
               <div className="create-date">{formatDate(review.createDate)}</div>
-              <button className="delete-button" onClick={() => handleDeleteReview(review.id)}>
-                삭제
-              </button>
+                <button className="delete-button" onClick={() => handleDeleteReview(review)}>
+                  삭제
+                </button>
             </li>
         ))}
       </ul>
