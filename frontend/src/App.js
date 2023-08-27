@@ -7,7 +7,6 @@ import SignupForm from './pages/signupform/SignupForm';
 
 import Footer from './components/footer/Footer';
 import ProposalList from "./pages/proposal/ProposalList";
-import Proposal from "./pages/proposal/Proposal";
 import WriteProposal from "./pages/proposal/WriteProposal";
 import RoomList from "./pages/chat-room/RoomList";
 import HeaderContainer from "./components/header/HeaderContainer";
@@ -23,8 +22,7 @@ function App() {
                 <Route path="/signup" element={<SignupForm/>}/>
 
                 <Route exact path={"/proposal/list"} element={<ProposalList/>}/>
-                <Route exact path={"/proposal/:id"} element={<Proposal/>}/>
-                <Route exact path={"/proposal/send"} element={<WriteProposal/>}/>
+                <Route exact path={"/write/proposal"} element={<WriteProposal/>}/>
                 <Route exact path={"/room/list"} element={<RoomList/>}/>
 
                 <Route path="/food" element={<FoodForm />} />
