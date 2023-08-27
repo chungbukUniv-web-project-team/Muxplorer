@@ -7,9 +7,6 @@ function ProposalList() {
     const [Proposal, setProposal] = useState([]);
     const [ProposalId, setProposalId] = useState(0);
 
-    // const onProposalIdHandler = (event)=>{
-    //     setProposalId(event.currentTarget.value);
-    // }
     useEffect(() => {
         axios.get("http://220.125.53.144:8000/suggestion-service/api/get/proposal/list", Token(localStorage.getItem("accessToken")))
             .then((response) => {

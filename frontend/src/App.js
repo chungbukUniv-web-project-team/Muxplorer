@@ -11,6 +11,7 @@ import WriteProposal from "./pages/proposal/WriteProposal";
 import RoomList from "./pages/chat-room/RoomList";
 import HeaderContainer from "./components/header/HeaderContainer";
 import FoodForm from "./pages/foodform/FoodForm";
+import Room from "./pages/chat-room/Room";
 
 function App() {
     return (
@@ -24,7 +25,7 @@ function App() {
                 <Route exact path={"/proposal/list"} element={<ProposalList/>}/>
                 <Route exact path={"/write/proposal"} element={<WriteProposal/>}/>
                 <Route exact path={"/room/list"} element={<RoomList/>}/>
-
+                <Route exact path={"/room/:id"} element={<Room/>}/>
                 <Route path="/food" element={<FoodForm />} />
             </Routes>
             <Footer/>
