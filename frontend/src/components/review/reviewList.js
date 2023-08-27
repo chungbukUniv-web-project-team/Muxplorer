@@ -32,6 +32,12 @@ const ReviewList = () => {
     return stars;
   };
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
+
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
   const displayedItems = reviewList.slice(firstItemIndex, lastItemIndex);
@@ -45,32 +51,49 @@ const ReviewList = () => {
     setCurrentPage(prevPage => Math.min(prevPage + 1, totalPages));
   };
 
+  const handleDeleteReview = (id) => {
+      console.log(id);
+  };
+
   return (
     <div className="review-list-container">
       <ul className="review-list">
-        {displayedItems.map((review, index) => (
-          <li key={index} className="review-item">
-            <div className="review-info">
-              <div className="nickname">{review.nickname}</div>
-              <div className="rating">{renderStarRating(review.rating)}</div>
-            </div>
-            <div className="review-content">{review.content}</div>
-            <div className="create-date">{review.createDate}</div>
-          </li>
+          {displayedItems.map((review, index) => (
+            <li key={index} className="review-item">
+              <div className="review-info">
+                <div className="nickname">닉네임: {review.nickname}</div>
+                <div className="rating">{renderStarRating(review.rating)}</div>
+              </div>
+              <div className="review-content">{review.content}</div>
+              <div className="create-date">{formatDate(review.createDate)}</div>
+              <button className="delete-button" onClick={() => handleDeleteReview(review.id)}>
+                삭제
+              </button>
+            </li>
         ))}
       </ul>
-      <div className="pagination-container">
-        <div className="pagination">
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <span> {currentPage.toString().padStart(2, '0')} / {totalPages.toString().padStart(2, '0')}</span>
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-            Next
-          </button>
-        </div>
+      {reviewList.length > 0 && (  // Conditionally render pagination
+      <div className="pagination">
+        <button 
+          className="pagination-button"
+          onClick={handlePrevPage} 
+          disabled={currentPage === 1}>
+          <span className="arrow-button">‹</span>
+        </button>
+        <span className="pagination-whole">
+          <span className="pagination-current">{currentPage.toString().padStart(2, '0')}</span>
+          <span className="pagination-separator"> / </span>
+          <span className="pagination-total">{totalPages.toString().padStart(2, '0')}</span>
+        </span>
+        <button 
+          className="pagination-button"
+          onClick={handleNextPage} 
+          disabled={currentPage === totalPages}>
+          <span className="arrow-button">›</span>
+        </button>
       </div>
-    </div>
+    )}
+  </div>
   );
 };
 

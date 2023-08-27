@@ -6,18 +6,24 @@ function FoodList() {
   const itemsPerPage = 9; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
   const [foodList, setFoodList] = useState([]);
+  const [selectedRestaurant, setSelectedRestaurant] = useState('All');
 
-  useEffect(() => {
-    async function fetchFoodList() {
-      try {
-        const response = await fetch('http://220.125.53.144:8000/review-service/api/get/food-list');
-        const data = await response.json();
-        setFoodList(data.response);
-      } catch (error) {
-        console.error('Error fetching food list:', error);
+  async function fetchFoodList(restaurantName = '') {
+    setCurrentPage(1);
+    try {
+      let url = 'http://220.125.53.144:8000/review-service/api/get/food-list';
+      if (restaurantName) {
+        url += `/${restaurantName}`;
       }
+      const response = await fetch(url);
+      const data = await response.json();
+      setFoodList(data.response);
+    } catch (error) {
+      console.error('Error fetching food list:', error);
     }
+  }
 
+  useEffect(() => {  
     fetchFoodList();
   }, []);
 
@@ -31,6 +37,21 @@ function FoodList() {
       <div id='food-title' class='food-title'>
         <div id='food-title1' class='food-title1'>음식</div>
         <div id='food-title2' class='food-title2'>리스트</div>
+      </div>
+      <div className="restaurant-filter">
+          <select
+            value={selectedRestaurant}
+            onChange={(event) => {
+              const restaurantName = event.target.value === '' ? '' : event.target.value;
+              setSelectedRestaurant(event.target.value);
+              fetchFoodList(restaurantName);
+            }}
+          >
+            <option value="">전체</option>
+            <option value="eunhasu">은하수식당</option>
+            <option value="byeolbich">별빛식당</option>
+            <option value="hanbich">한빛식당</option>
+          </select>
       </div>
       <div id='food-line' class='food-line' />
       <ul className="food-list">
@@ -54,20 +75,21 @@ function FoodList() {
       </ul>
       <div className="pagination">
         <button
+          className="pagination-button"
           onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
+          disabled={currentPage === 1}>
+          <span className="arrow-button">&#8249;</span>
         </button>
-        <span>
-          {/* Display the current page and total pages in the format: "currentPage / totalPages" */}
-          {`${currentPage.toString().padStart(2, '0')} / ${totalPages.toString().padStart(2, '0')}`}
+        <span className="pagination-whole">
+          <span className="pagination-current">{currentPage.toString().padStart(2, '0')}</span>
+          <span className="pagination-separator"> / </span>
+          <span className="pagination-total">{totalPages.toString().padStart(2, '0')}</span>
         </span>
         <button
+          className="pagination-button"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={endIndex >= foodList.length}
-        >
-          Next
+          disabled={endIndex >= foodList.length}>
+          <span className="arrow-button">&#8250;</span>
         </button>
       </div>
     </div>
