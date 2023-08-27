@@ -60,6 +60,7 @@ public class RoomServiceImpl implements RoomService {
 		if (roomEntity == null) {
 			throw new NotFoundRoomByIdException("아이디에 해당하는 방을 찾을 수 없습니다");
 		}
+
 		return new RoomDto(roomEntity.getId(), roomEntity.getUserId(), roomEntity.getManagerId(),
 			roomEntity.getSpaceName());
 	}

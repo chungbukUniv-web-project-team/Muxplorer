@@ -39,6 +39,7 @@ public class ProposalEntity {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
+
 	@Builder
 	public ProposalEntity(Long userId, String title, String content,LocalDateTime createdAt) {
 		this.userId = userId;

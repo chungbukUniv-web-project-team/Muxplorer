@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'chungbukUniv-web-project-team'
-version = '0.0.1-SNAPSHOT'
+version = '1.2'
 
 java {
 	sourceCompatibility = '11'
@@ -35,6 +35,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp'
 }
 
 dependencyManagement {
