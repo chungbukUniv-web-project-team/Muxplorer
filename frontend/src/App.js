@@ -1,7 +1,7 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import LoginForm from './pages/loginform/LoginForm';
 import SignupForm from './pages/signupform/SignupForm';
 
@@ -14,6 +14,7 @@ import WriteProposal from './pages/proposal/WriteProposal';
 import RoomList from './pages/chat-room/RoomList';
 import ReviewPage from './pages/review/ReviewPage';
 import HeaderContainer from "./components/header/HeaderContainer";
+import FoodForm from "./pages/foodform/FoodForm";
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
                 <Route exact path={"/room/list"} element={<RoomList/>}/>
                 <Route path='/foods' element={<FoodListPage />} />
                 <Route path='/review/:id' element={<ReviewPage />} />
+                <Route path="/food" element={<FoodForm />} />
+
             </Routes>
             <Footer/>
         </div>

@@ -65,7 +65,7 @@ const Header = ({children}) => {
         <Positioner>
             <WhiteBackground>
                 <HeaderContents>
-                    <Logo>MUXPLORER</Logo>
+                    <a  href="/" style={{textDecoration: "none" }} > <Logo>MUXPLORER</Logo> </a>
                     <Spacer/>
                     {children}
                 </HeaderContents>
