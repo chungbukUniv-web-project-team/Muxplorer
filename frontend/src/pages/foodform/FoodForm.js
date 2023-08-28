@@ -6,7 +6,7 @@ const RestImages = ["/images/rest1.png", "/images/rest2.png", "/images/rest3.png
 function FoodForm() {
 
 
-    const [foods, setFoods] = useState([]);
+    const [Foods, setFoods] = useState([]);
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -24,20 +24,21 @@ function FoodForm() {
         axios.get('http://220.125.53.144:8000/crawling-service/api/find/food-list')
             .then(response => {
                 setFoods(response.data);
+                console.log(response.data)
             })
             .catch(error => {
                 console.error('Error fetching food data:', error);
             });
     }, []);
 
-    const filteredFoods = foods.filter(food => {
+    const filteredFoods = Foods.filter(food => {
 
         if (currentImageIndex === 0) {
             return food.time === "한빛";
         } else if (currentImageIndex === 1) {
             return food.time === "별빛";
         } else {
-            return food.time === "은하수" && food.rest === "점심";
+            return food.time === "은하수";// && food.rest === "점심";
         }
     });
 
@@ -57,6 +58,13 @@ function FoodForm() {
             금: []
         },
         석식: {
+            월: [],
+            화: [],
+            수: [],
+            목: [],
+            금: []
+        },
+        저녁: {
             월: [],
             화: [],
             수: [],
@@ -150,7 +158,7 @@ function FoodForm() {
                     </table>
                 )}
 
-                {(currentImageIndex === 0) && (
+                {(currentImageIndex === 0 ) && (
                     <table className="meal-table">
                         <thead>
                         <tr>
@@ -171,6 +179,31 @@ function FoodForm() {
                             <td>{filteredMenuByDay['석식']['수']}</td>
                             <td>{filteredMenuByDay['석식']['목']}</td>
                             <td>{filteredMenuByDay['석식']['금']}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                )}
+                {(currentImageIndex === 2 ) && (
+                    <table className="meal-table">
+                        <thead>
+                        <tr>
+                            <th colSpan="5" style={{ textAlign: 'center' }}>석식코너 (오후 4:30 ~ 오후 5:30)</th>
+                        </tr>
+                        <tr>
+                            <th>월[{filteredMenuByDay['저녁']['월'].date}]</th>
+                            <th>화[{filteredMenuByDay['저녁']['화'].date}]</th>
+                            <th>수[{filteredMenuByDay['저녁']['수'].date}]</th>
+                            <th>목[{filteredMenuByDay['저녁']['목'].date}]</th>
+                            <th>금[{filteredMenuByDay['저녁']['금'].date}]</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{filteredMenuByDay['저녁']['월']}</td>
+                            <td>{filteredMenuByDay['저녁']['화']}</td>
+                            <td>{filteredMenuByDay['저녁']['수']}</td>
+                            <td>{filteredMenuByDay['저녁']['목']}</td>
+                            <td>{filteredMenuByDay['저녁']['금']}</td>
                         </tr>
                         </tbody>
                     </table>
