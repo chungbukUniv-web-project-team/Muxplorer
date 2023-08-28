@@ -1,0 +1,182 @@
+.food-list-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .food-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute items horizontally */
+    max-width: 960px; /* Limit the width to prevent more than 3 items in a row */
+    margin: 0 auto; /* Center the list */
+  }
+  
+  .food-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(33.33% - 20px); /* Distribute in 3 columns with margins */
+    max-width: 250px; /* Limit width for small screens */
+  }
+  
+  .food-restaurant{
+    color:#bdbdbd;
+  }
+
+  .food-image img {
+    max-width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .food-details h2 {
+    margin: 0;
+  }
+  
+  .food-details p {
+    margin-top: 5px;
+    color: #555;
+  }
+
+  .more-button {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .more-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+.food-title
+{
+  height: 128px;
+  width: 277.76300048828125px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  left: 365px;
+  top: 20px; /* Adjust this value to position the title higher */
+  position: relative;
+  margin-top: 88px;
+}
+.food-title1
+{
+color:#bdbdbd;
+text-align:left;
+vertical-align:text-top;
+font-size:64px;
+font-family:Roboto;
+line-height:64px;
+border-style:hidden;
+outline:none;
+width:277.76300048828125px;
+}
+.food-title2
+{
+color:#333333;
+text-align:left;
+vertical-align:text-top;
+font-size:64px;
+font-family:Roboto;
+line-height:64px;
+border-style:hidden;
+outline:none;
+top:64px;
+left:0px;
+position:absolute;
+width:377px;
+font-weight:bolder;
+}
+
+.food-line
+{
+background-color:#f2f2f2;
+height:1.5px;
+width:57%;
+margin: 0 auto;
+margin-bottom: 35px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  color: #bdbdbd;
+  font-size: 19px;
+  font-family: Roboto;
+  font-weight: 600;
+}
+
+.pagination-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 24px;
+  color: #333;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.pagination-button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.arrow-button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination-whole
+{
+  width: 120px;
+}
+
+.pagination-current
+{
+  color: #333333;
+}
+
+.pagination-total {
+  color: #bdbdbd;
+}
+
+.pagination-separator {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.restaurant-filter {
+  width: 150%;
+  position: flex;
+  right: 360px;
+  margin-right: 20px;
+  margin-bottom: 30px; /* Add margin at the bottom */
+}
+
+.restaurant-filter select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

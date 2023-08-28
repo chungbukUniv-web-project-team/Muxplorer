@@ -1,0 +1,74 @@
+.review-list-container {
+    padding: 20px;
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin: 0 auto;
+  }
+  
+  .review-list {
+    margin-top: -15px;
+    list-style: none;
+    padding: 0;
+  }
+   
+  .review-item {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 78%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  .review-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .nickname {
+    font-weight: bold;
+  }
+  
+  .star {
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 3px;
+  }
+  
+  .filled {
+    color: gold;
+  }
+  
+  .review-content {
+    margin-bottom: 10px;
+  }
+  
+  .create-date {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .pagination-whole
+  {
+    text-align: center;
+  }
+
+  .delete-button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .delete-button:hover {
+    background-color: #555;
+  }
