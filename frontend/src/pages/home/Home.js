@@ -7,6 +7,21 @@ const NoticeImages = [
     { src: "/images/notice3.png", link: "https://www.cbnucoop.com/6974/" },
 ];
 
+const handleAdminButtonClick = () => {
+    // 여기에 API 요청 전송 코드 추가
+    fetch("http://220.125.53.144:8000/crawling-service/api/create/foods", {
+        method: "POST",
+        // 추가적인 옵션을 설정할 수 있습니다.
+    })
+        .then(response => response.json())
+        .then(data => {
+            // API 요청에 대한 응답을 처리하는 코드
+        })
+        .catch(error => {
+            // 에러 처리 코드
+        });
+};
+
 function Home() {
     const [currentNoticeIndex, setCurrentNoticeIndex] = useState(0);
 
@@ -42,6 +57,8 @@ function Home() {
                 </div>
             </div>
             <FoodForm />
+
+            <button style={{ border: "none", background:"rgb(189,189,189)", color:"white" ,ontSize: "16px", cursor: "pointer" }} onClick={handleAdminButtonClick}>관리자</button>
         </div>
     );
 }

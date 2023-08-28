@@ -6,7 +6,7 @@ import './FoodDetail.css';
 function FoodDetail() {
   const { id } = useParams();
   const [foodDetail, setFoodDetail] = useState([]);
- 
+
   useEffect(() => {
     const fetchFoodDetail = async () => {
       try {

@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewList from '../../components/review/ReviewList';
-import FoodDetail from '../../components/review/FoodDetail';
+import ReviewList from '../../components/review/reviewList';
+import FoodDetail from '../../components/review/foodDetail';
 import ReviewRegister from '../../components/review/ReviewRegister';
 
 function ReviewPage() {

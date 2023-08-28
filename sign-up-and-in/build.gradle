@@ -1,0 +1,61 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
+}
+
+group = 'com.signup'
+version = '1.4'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.32'
+
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	implementation group: 'org.springframework.cloud', name:'spring-cloud-starter-config'
+	implementation group: 'org.springframework.boot', name:'spring-boot-starter-actuator'
+	implementation group: 'org.springframework.cloud', name:'spring-cloud-starter-bootstrap'
+	implementation group: 'org.springframework.cloud', name:'spring-cloud-starter-bus-amqp'
+
+
+}
+ext {
+	set('springCloudVersion', "2022.0.4")
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './ReviewList.css';
+import './reviewList.css';
 import Token from "../Token";
 
 const ReviewList = () => {

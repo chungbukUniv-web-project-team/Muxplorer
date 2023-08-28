@@ -16,6 +16,7 @@ import ReviewPage from './pages/review/ReviewPage';
 
 import HeaderContainer from "./components/header/HeaderContainer";
 import FoodForm from "./pages/foodform/FoodForm";
+import Room from "./pages/chat-room/Room";
 
 
 function App() {
@@ -30,8 +31,10 @@ function App() {
                 <Route exact path={"/proposal/list"} element={<ProposalList/>}/>
                 <Route exact path={"/write/proposal"} element={<WriteProposal/>}/>
                 <Route exact path={"/room/list"} element={<RoomList/>}/>
+
                 <Route path='/foods' element={<FoodListPage />} />
                 <Route path='/review/:id' element={<ReviewPage />} />
+                <Route exact path={"/room/:id"} element={<Room/>}/>
                 <Route path="/food" element={<FoodForm />} />
 
             </Routes>
