@@ -95,7 +95,7 @@ function ProposalList() {
                                 borderRadius: "10px",  // 둥글게 처리할 부분
                             }}>
                                 <div style={{
-                                    width: "400px",
+                                    width: "1000px",
                                     height: "30px",
                                     color: "#9b9d9f",
                                     fontSize: "25px",
@@ -129,7 +129,7 @@ function ProposalList() {
                                         hour12: false
                                     })}
                                 </div>
-                                <form onSubmit={onDeleteProposalHandler} ㄴ>
+                                <form onSubmit={onDeleteProposalHandler}>
                                     <div style={{
                                         width: "1000px",
                                         height: "30px",

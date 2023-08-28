@@ -104,7 +104,7 @@ function WriteProposal() {
                             fontSize: "20px",
                             color:"#7d7f7d"
 
-                        }}>제출하기</button>
+                        }}>제출</button>
                     </form>
                 </div>
                 <div style={{
