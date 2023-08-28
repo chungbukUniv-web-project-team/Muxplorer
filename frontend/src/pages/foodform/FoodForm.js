@@ -93,7 +93,7 @@ function FoodForm() {
     return (
         <div style={{display: "flex", alignItems: "flex-start", justifyContent: "space-between"}}>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center",
-                justifyContent: "center", marginLeft: "150px", marginTop: "150px", marginBottom:"150px"}}>
+                justifyContent: "center", marginLeft: "500px", marginTop: "150px", marginBottom:"150px",}}>
                 <img
                     src={RestImages[currentImageIndex]}
                     alt="식당"

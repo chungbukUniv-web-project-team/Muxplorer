@@ -22,10 +22,10 @@ function Home() {
 
     return (
         <div>
-            <div style={{ marginTop: "100px", marginLeft:"20px",marginBottom:"100px", display: "flex", alignItems: "center" }}>
+            <div style={{ marginTop: "50px", paddingBottom: "50px",marginLeft:"20px",display: "flex", alignItems: "center", dth: "60px", borderBottom: "4px solid black" }}>
                 <div style={{ flex: 1 }}>
-                    <h1 style={{ color: "rgb(189,189,189)" }}>주간</h1>
-                    <h1>식당 메뉴</h1>
+                    <h1 style={{ color: "rgb(189,189,189)", marginLeft:"300px",fontSize: "60px"}}>주간</h1>
+                    <h1 style ={{ marginLeft:"300px",fontSize: "60px" }}>식당 메뉴</h1>
                 </div>
                 <div style={{ flex: 1 }}>
                     <a
