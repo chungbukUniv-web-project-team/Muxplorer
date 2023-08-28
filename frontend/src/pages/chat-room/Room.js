@@ -89,7 +89,7 @@ function Room() {
                                     color: "#9b9d9f",
                                     fontSize: "18px",
                                     paddingLeft: "30px",
-                                }}>{participantId === suggestion.fromId ? "받은 내용 : " : "보낸 내용 : "}{suggestion.message}</div>
+                                }}>{participantId === suggestion.fromId ? "보낸 내용 : " : "받은 내용 : "}{suggestion.message}</div>
                                 <div style={{
                                     width: "1000px",
                                     height: "30px",
