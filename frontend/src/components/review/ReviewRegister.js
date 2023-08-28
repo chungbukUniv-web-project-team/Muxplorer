@@ -8,7 +8,7 @@ const ReviewRegister = () => {
   const [Content, setContent] = useState('');
   const [Rating, setRating] = useState(0);
   const { id } = useParams();
-
+ 
   const handleReviewSubmit = () => {
     if (Content.trim() === '') {
       alert("리뷰를 입력해주세요");

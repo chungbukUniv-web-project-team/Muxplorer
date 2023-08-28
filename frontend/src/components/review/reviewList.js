@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ReviewList.css';
-import Token from "../../components/Token";
+import Token from "../Token";
 
 const ReviewList = () => {
   const { id } = useParams();
@@ -78,7 +78,7 @@ const ReviewList = () => {
       }
   };
 
-
+ 
   return (
     <div className="review-list-container">
       <ul className="review-list">
